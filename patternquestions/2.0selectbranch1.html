@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IGDTUW Resource Room - Select Branch</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            color: #fff;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+        
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            padding: 30px 0;
+            text-align: center;
+        }
+        
+        .logo {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            color: #ff4d94;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .tagline {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            font-weight: 300;
+        }
+        
+        .branches-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 25px;
+            margin-top: 30px;
+        }
+        
+        .branch-box {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            width: 300px;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .branch-box:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            background: rgba(255, 255, 255, 0.15);
+        }
+        
+        .branch-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: #ff4d94;
+        }
+        
+        .branch-name {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        .branch-desc {
+            font-size: 1rem;
+            line-height: 1.5;
+            opacity: 0.9;
+        }
+        
+        .floating-elements {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+        
+        .floating {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+        }
+        
+        .floating:nth-child(1) {
+            width: 80px;
+            height: 80px;
+            top: 10%;
+            left: 20%;
+            animation: float 15s linear infinite;
+        }
+        
+        .floating:nth-child(2) {
+            width: 50px;
+            height: 50px;
+            top: 70%;
+            left: 10%;
+            animation: float 12s linear infinite reverse;
+        }
+        
+        .floating:nth-child(3) {
+            width: 100px;
+            height: 100px;
+            top: 50%;
+            left: 80%;
+            animation: float 20s linear infinite;
+        }
+        
+        .floating:nth-child(4) {
+            width: 60px;
+            height: 60px;
+            top: 20%;
+            left: 70%;
+            animation: float 18s linear infinite reverse;
+        }
+        
+        @keyframes float {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            100% { transform: translate(100px, 100px) rotate(360deg); }
+        }
+        
+        .scroll-indicator {
+            position: fixed;
+            right: 30px;
+            bottom: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .scroll-arrow {
+            width: 30px;
+            height: 30px;
+            border-right: 4px solid #fff;
+            border-bottom: 4px solid #fff;
+            transform: rotate(45deg);
+            margin: -10px 0;
+            animation: arrowAnimation 2s infinite;
+            opacity: 0.7;
+        }
+        
+        .scroll-arrow:nth-child(2) {
+            animation-delay: 0.3s;
+        }
+        
+        .scroll-arrow:nth-child(3) {
+            animation-delay: 0.6s;
+        }
+        
+        @keyframes arrowAnimation {
+            0% { opacity: 0; }
+            50% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 50px;
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+        
+        @media (max-width: 768px) {
+            h1 { font-size: 2rem; }
+            .tagline { font-size: 1rem; }
+            .branch-box { width: 100%; max-width: 300px; }
+            .scroll-indicator { right: 15px; bottom: 15px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-elements">
+        <div class="floating"></div>
+        <div class="floating"></div>
+        <div class="floating"></div>
+        <div class="floating"></div>
+    </div>
+    
+    <div class="container">
+        <header>
+            <div class="logo">
+                <i class="fas fa-graduation-cap"></i>
+            </div>
+            <h1>SELECT YOUR BRANCH</h1>
+            <p class="tagline">Explore resources specific to your field of study</p>
+        </header>
+        
+        <div class="branches-container">
+            <div class="branch-box">
+                <div class="branch-icon">
+                    <i class="fas fa-laptop-code"></i>
+                </div>
+                <h2 class="branch-name">CSE</h2>
+                <p class="branch-desc">Computer Science and Engineering resources, programming materials, and software development resources.</p>
+            </div>
+            
+            <div class="branch-box">
+                <div class="branch-icon">
+                    <i class="fas fa-brain"></i>
+                </div>
+                <h2 class="branch-name">CSE AI</h2>
+                <p class="branch-desc">Artificial Intelligence specialization within Computer Science, featuring machine learning and AI algorithms.</p>
+            </div>
+            
+            <div class="branch-box">
+                <div class="branch-icon">
+                    <i class="fas fa-microchip"></i>
+                </div>
+                <h2 class="branch-name">ECE</h2>
+                <p class="branch-desc">Electronics and Communication Engineering resources, circuit design, and communication systems materials.</p>
+            </div>
+            
+            <div class="branch-box">
+                <div class="branch-icon">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <h2 class="branch-name">ECE AI</h2>
+                <p class="branch-desc">AI applications in Electronics, featuring embedded AI systems and intelligent hardware design.</p>
+            </div>
+            
+            <div class="branch-box">
+                <div class="branch-icon">
+                    <i class="fas fa-network-wired"></i>
+                </div>
+                <h2 class="branch-name">IT</h2>
+                <p class="branch-desc">Information Technology resources, networking materials, and system administration guides.</p>
+            </div>
+            
+            <div class="branch-box">
+                <div class="branch-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <h2 class="branch-name">AI & ML</h2>
+                <p class="branch-desc">Comprehensive Artificial Intelligence and Machine Learning resources, algorithms, and data science materials.</p>
+            </div>
+            
+            <div class="branch-box">
+                <div class="branch-icon">
+                    <i class="fas fa-cogs"></i>
+                </div>
+                <h2 class="branch-name">MECH</h2>
+                <p class="branch-desc">Mechanical Engineering resources, mechanics, thermodynamics, and design materials.</p>
+            </div>
+            
+            <div class="branch-box">
+                <div class="branch-icon">
+                    <i class="fas fa-bolt"></i>
+                </div>
+                <h2 class="branch-name">EEE</h2>
+                <p class="branch-desc">Electrical and Electronics Engineering resources, power systems, and electrical machines.</p>
+            </div>
+        </div>
+        
+        <div class="footer">
+            Indira Gandhi Delhi Technical University for Women • Resource Room
+        </div>
+    </div>
+    
+    <div class="scroll-indicator">
+        <div class="scroll-arrow"></div>
+        <div class="scroll-arrow"></div>
+        <div class="scroll-arrow"></div>
+    </div>
+
+    <script>
+        // Simple animation for background elements
+        document.addEventListener('mousemove', function(e) {
+            const floatingEls = document.querySelectorAll('.floating');
+            const x = e.clientX / window.innerWidth;
+            const y = e.clientY / window.innerHeight;
+            
+            floatingEls.forEach(function(el, index) {
+                const speed = 0.01 + (index * 0.005);
+                const xOffset = (x * speed * 100);
+                const yOffset = (y * speed * 100);
+                
+                el.style.transform = `translate(${xOffset}px, ${yOffset}px)`;
+            });
+        });
+        
+        // Add hover effect to branch boxes
+        document.querySelectorAll('.branch-box').forEach(box => {
+            box.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px)';
+            });
+            
+            box.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+    </script>
+</body>
+</html>
