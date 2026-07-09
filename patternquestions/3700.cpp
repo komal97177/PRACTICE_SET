@@ -1,12 +1,16 @@
 class Solution {
 public:
+// here static constexpr is used to define a compile-time constant for the modulo value, which is commonly used in competitive programming to prevent integer overflow and to keep numbers within a manageable range. The value 1000000007 is a large prime number that is often used as a modulus in problems involving large numbers or combinatorial calculations.
     static constexpr int MOD = 1000000007;
-
+ 
+    // the matrix here is represented as a struct with a 2D vector of long long integers.
+    //  The constructor initializes the matrix with zeros and takes the size of the matrix as an argument.
     struct Matrix {
         vector<vector<long long>> a;
         Matrix(int n) : a(n, vector<long long>(n, 0)) {}
     };
 
+    // This function multiplies two matrices A and B under the modulo MOD.
     Matrix multiply(const Matrix &A, const Matrix &B) {
         int n = A.a.size();
         Matrix C(n);
@@ -22,6 +26,7 @@ public:
         return C;
     }
 
+    // This function computes the power of a matrix under the modulo MOD using fast exponentiation.
     Matrix power(Matrix base, long long exp) {
         int n = base.a.size();
         Matrix res(n);
