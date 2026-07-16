@@ -1,0 +1,54 @@
+class Solution {
+public:
+    const double EPS = 1e-6;
+
+    bool solve(vector<double> nums) {
+        if (nums.size() == 1) {
+            return fabs(nums[0] - 24.0) < EPS;
+        }
+
+        int n = nums.size();
+
+        for (int i = 0; i < n; i++) {
+            for (int j = i + 1; j < n; j++) {
+                vector<double> next;
+
+                // Keep remaining numbers
+                for (int k = 0; k < n; k++) {
+                    if (k != i && k != j)
+                        next.push_back(nums[k]);
+                }
+
+                vector<double> candidates = {
+                    nums[i] + nums[j],
+                    nums[i] * nums[j],
+                    nums[i] - nums[j],
+                    nums[j] - nums[i]
+                };
+
+                if (fabs(nums[j]) > EPS)
+                    candidates.push_back(nums[i] / nums[j]);
+
+                if (fabs(nums[i]) > EPS)
+                    candidates.push_back(nums[j] / nums[i]);
+
+                for (double x : candidates) {
+                    next.push_back(x);
+                    if (solve(next))
+                        return true;
+                    next.pop_back();
+                }
+            }
+        }
+
+        return false;
+    }
+
+    bool judgePoint24(vector<int>& cards) {
+        vector<double> nums;
+        for (int x : cards)
+            nums.push_back((double)x);
+
+        return solve(nums);
+    }
+};
