@@ -12,6 +12,9 @@ void replacePi(char input[], int i) {
     if (input[i] == 'p' && input[i + 1] == 'i') {
 
         // shift string right to make space for "3.14"
+        // i is the index of 'p', so we need to find the end of the string
+        // j will point to the null terminator of the string
+        // k will be used to shift characters to the right
         int j = i + 2;
         while (input[j] != '\0') {
             j++;
